@@ -1,962 +1,219 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>The Final Third™ – Define Your Moment</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="The Final Third™ Method – a three-session performance preparation program for serious players who want to show up when the moment matters."
-  />
-
-  <!-- Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap"
-    rel="stylesheet"
-  />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>THE FINAL THIRD™ — EARN THE MOMENT.</title>
+  <meta name="description" content="THE FINAL THIRD™ — PERFORMANCE PREPARATION FOR PLAYERS WHO WANT TO SHOW UP WHEN IT MATTERS." />
 
   <style>
-    :root {
-      --bg: #050509;
-      --bg-alt: #0b0f1a;
-      --card-bg: #0f172a;
-      --accent: #f97316;
-      --accent-soft: rgba(249, 115, 22, 0.18);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --border-soft: rgba(148, 163, 184, 0.4);
+    :root{
+      --BG:#F4F4F4;
+      --INK:#111111;
+      --GRAY:#666666;
+      --LINE:#D9D9D9;
+      --PANEL:#FFFFFF;
+      --BTN:#2B2B2B;
+      --BTN2:#EDEDED;
+      --SHADOW: 0 10px 30px rgba(0,0,0,.08);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #020617 0, #020617 36%, #020617 100%);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font-family: inherit;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .shell {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 0 1.25rem;
-    }
-
-    /* NAV */
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(
-        to bottom,
-        rgba(5, 5, 9, 0.98),
-        rgba(5, 5, 9, 0.8),
-        transparent
-      );
-      border-bottom: 1px solid rgba(15, 23, 42, 0.7);
-    }
-
-    .nav-inner {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 0.7rem 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .nav-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background: var(--BG);
+      color: var(--INK);
+      font-family: Arial, Helvetica, sans-serif;
       text-transform: uppercase;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: radial-gradient(circle at 5% 0%, #1f2937, #020617);
+      letter-spacing: .02em;
+    }
+    a{ color:inherit; text-decoration:none; }
+    img{ display:block; max-width:100%; }
+
+    /* PAGE FRAME (MATCH WIREFRAME IMAGE) */
+    .frame{
+      width: min(1080px, calc(100% - 40px));
+      margin: 28px auto 40px;
+      background: var(--PANEL);
+      border: 1px solid var(--LINE);
+      box-shadow: var(--SHADOW);
     }
 
-    .nav-text {
-      display: flex;
-      flex-direction: column;
+    /* TOP NAV */
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--LINE);
+      background: #FAFAFA;
     }
-
-    .nav-text span:first-child {
-      font-size: 0.9rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 600;
+    .brand{
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: .02em;
     }
-
-    .nav-text span:last-child {
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .nav{
+      display:flex;
+      align-items:center;
+      gap: 16px;
+      font-weight: 700;
+      font-size: 12px;
+      color: #444;
     }
-
-    .nav-cta {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .btn-primary,
-    .btn-ghost {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      border-radius: 999px;
-      padding: 0.55rem 1.4rem;
-      border: 1px solid transparent;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      transition: background 0.15s ease-out, transform 0.12s ease-out,
-        box-shadow 0.15s ease-out, border-color 0.15s ease-out, color 0.1s ease-out;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: radial-gradient(circle at 0% 0%, #f97316, #e11d48);
-      color: #f9fafb;
-      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.75);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 22px 55px rgba(0, 0, 0, 0.85);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      border-color: rgba(148, 163, 184, 0.8);
-      color: var(--text);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(15, 23, 42, 0.92);
-      border-color: #e5e7eb;
-    }
-
-    @media (max-width: 640px) {
-      .nav-inner {
-        padding-top: 0.6rem;
-        padding-bottom: 0.6rem;
-      }
-      .nav-cta {
-        gap: 0.4rem;
-      }
-      .btn-primary,
-      .btn-ghost {
-        padding-inline: 1rem;
-      }
-    }
-
-    /* SECTION / TYPOGRAPHY UTILITIES */
-
-    section {
-      padding: 3.25rem 0;
-    }
-
-    .section-kicker {
-      font-size: 0.74rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-    }
-
-    .section-title {
-      font-size: 1.15rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-    }
-
-    .section-lead {
-      font-size: 0.98rem;
-      color: rgba(229, 231, 235, 0.9);
-      max-width: 32rem;
-    }
-
-    .section-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-      gap: 2rem;
-      align-items: flex-start;
-    }
-
-    @media (max-width: 880px) {
-      .section-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .card {
-      border-radius: 1.5rem;
-      border: 1px solid var(--border-soft);
-      background: radial-gradient(circle at 0 0, #0b1120, #020617);
-      padding: 1.4rem 1.4rem 1.5rem;
-      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.7);
-    }
-
-    .card + .card {
-      margin-top: 1rem;
-    }
-
-    .small {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    ul.bullets {
-      list-style: none;
-      margin-top: 0.5rem;
-    }
-
-    ul.bullets li {
-      display: flex;
-      gap: 0.45rem;
-      margin-bottom: 0.35rem;
-      font-size: 0.85rem;
-      color: rgba(229, 231, 235, 0.92);
-    }
-
-    ul.bullets li::before {
-      content: "•";
-      color: var(--accent);
-      margin-top: 0.08rem;
+    .nav a{ padding: 6px 6px; }
+    .nav a:hover{ text-decoration: underline; }
+    .nav .cta{
+      padding: 9px 14px;
+      border: 1px solid #9E9E9E;
+      background: #F5F5F5;
+      font-weight: 800;
+      color: #333;
     }
 
     /* HERO */
+    .hero{
+      position:relative;
+      height: 260px;
+      border-bottom: 1px solid var(--LINE);
+      overflow:hidden;
+      background:#000;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.45) 48%, rgba(0,0,0,.18) 100%),
+        url("https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1800&q=70");
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(100%) contrast(1.05);
+      transform: scale(1.02);
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+      height:100%;
+      padding: 34px 26px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      max-width: 58%;
+    }
+    @media (max-width: 860px){
+      .hero{ height: 300px; }
+      .hero-content{ max-width: 92%; }
+    }
+    .hero-title{
+      margin:0;
+      color:#FFF;
+      font-weight: 900;
+      font-size: 44px;
+      letter-spacing: .02em;
+    }
+    .hero-sub{
+      margin: 10px 0 0 0;
+      color: rgba(255,255,255,.88);
+      text-transform:none; /* SUBTITLE SENTENCE CASE */
+      letter-spacing: 0;
+      font-size: 16px;
+      line-height: 1.45;
+      max-width: 46ch;
+    }
+    .hero-outcome{
+      margin: 8px 0 0 0;
+      color: rgba(255,255,255,.82);
+      text-transform:none;
+      letter-spacing: 0;
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 52ch;
+    }
+    .hero-actions{
+      margin-top: 16px;
+      display:flex;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 16px;
+      border: 1px solid #BDBDBD;
+      background: #EFEFEF;
+      font-weight: 800;
+      font-size: 12px;
+      color:#222;
+      min-width: 150px;
+    }
+    .btn:hover{ background:#E6E6E6; }
 
-    #home {
-      position: relative;
-      padding-top: 4.2rem;
-      padding-bottom: 3.5rem;
+    /* STATEMENT */
+    .section{
+      padding: 22px 26px;
+      border-bottom: 1px solid var(--LINE);
+    }
+    .center{
+      text-align:center;
+    }
+    .h{
+      margin:0;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: .08em;
+    }
+    .p{
+      margin: 12px auto 0 auto;
+      color: #666;
+      text-transform:none; /* BODY SENTENCE CASE */
+      letter-spacing: 0;
+      line-height: 1.55;
+      font-size: 14px;
+      max-width: 78ch;
+    }
+    .rule{
+      margin: 18px 0 0 0;
+      height:1px;
+      background: var(--LINE);
     }
 
-    .hero-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 2.4rem;
-      align-items: center;
+    /* DICTIONARY BLOCK */
+    .dict-wrap{
+      padding: 0 26px 22px 26px;
+      border-bottom: 1px solid var(--LINE);
     }
-
-    @media (max-width: 900px) {
-      #home {
-        padding-top: 3.1rem;
-      }
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    .dict-title{
+      padding: 18px 0 12px 0;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: .04em;
     }
-
-    .hero-top-buttons {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.4rem;
+    .dict-box{
+      border: 1px solid #CFCFCF;
+      background:#FBFBFB;
     }
-
-    .hero-top-buttons .btn-ghost {
-      width: auto;
-      padding-inline: 1.1rem;
-      font-size: 0.75rem;
+    .dict-top{
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 14px 14px 12px 14px;
+      border-bottom: 1px solid #D7D7D7;
+      align-items:flex-end;
+      flex-wrap:wrap;
     }
-
-    @media (max-width: 640px) {
-      .hero-top-buttons {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .hero-top-buttons .btn-ghost {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-
-    .hero-kicker {
-      font-size: 0.8rem;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.7rem;
-    }
-
-    .hero-title {
-      font-size: clamp(2.1rem, 4vw, 2.8rem);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-    }
-
-    .hero-subtitle {
-      font-size: 0.96rem;
-      color: rgba(229, 231, 235, 0.9);
-      margin-bottom: 0.8rem;
-      max-width: 32rem;
-    }
-
-    .hero-subtitle span {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .hero-outcome {
-      font-size: 0.84rem;
-      color: var(--muted);
-      margin-bottom: 1.6rem;
-      max-width: 30rem;
-    }
-
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.85rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .hero-footnote {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .hero-media {
-      position: relative;
-    }
-
-    .hero-card {
-      position: relative;
-      border-radius: 1.8rem;
-      overflow: hidden;
-      border: 1px solid rgba(156, 163, 175, 0.7);
-      box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.95),
-        inset 0 0 0 1px rgba(15, 23, 42, 0.7);
-      background: #020617;
-    }
-
-    .hero-card img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      transform: scale(1.03);
-      filter: saturate(1.12);
-    }
-
-    .hero-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(5, 5, 9, 0.9),
-        rgba(5, 5, 9, 0.35),
-        transparent
-      );
-    }
-
-    .hero-card-footer {
-      position: absolute;
-      left: 1.3rem;
-      right: 1.3rem;
-      bottom: 1.1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #f9fafb;
-    }
-
-    .hero-pill {
-      padding: 0.25rem 0.9rem;
-      border-radius: 999px;
-      border: 1px solid rgba(209, 213, 219, 0.85);
-      background: rgba(15, 23, 42, 0.95);
-    }
-
-    .hero-badge {
-      position: absolute;
-      top: -0.45rem;
-      right: -0.15rem;
-      background: rgba(15, 23, 42, 0.98);
-      border-radius: 999px;
-      border: 1px solid rgba(156, 163, 175, 0.9);
-      padding: 0.45rem 0.9rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: radial-gradient(circle, #22c55e, #15803d);
-      box-shadow: 0 0 14px rgba(34, 197, 94, 0.95);
-    }
-
-    /* PHILOSOPHY – DICTIONARY STYLE */
-
-    .dictionary-card {
-      background: #fdfbf7;
-      color: #111827;
-      border-radius: 1.3rem;
-      border: 1px solid #e5dfcf;
-      box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.55),
-        inset 0 0 0 1px rgba(0, 0, 0, 0.03);
-      padding: 1.2rem 1.4rem 1.3rem;
-      font-family: "Merriweather", Georgia, "Times New Roman", serif;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .dictionary-card::before {
-      content: "";
-      position: absolute;
-      left: 0.95rem;
-      top: 0.9rem;
-      bottom: 0.9rem;
-      width: 2px;
-      background: #b91c1c;
-      opacity: 0.9;
-    }
-
-    .dictionary-header {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      align-items: baseline;
-      margin-left: 1.25rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .dictionary-headword {
-      font-size: 1.2rem;
+    .phonetic{
+      color:#666;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      font-size: 13px;
+      text-transform:none;
+      letter-spacing: 0;
     }
-
-    .dictionary-pronunciation {
-      font-size: 0.85rem;
-      font-style: italic;
-      color: #374151;
-    }
-
-    .dictionary-pos {
-      font-size: 0.85rem;
-      font-style: italic;
-      color: #4b5563;
-    }
-
-    .dictionary-senses {
-      margin-left: 1.25rem;
-      margin-top: 0.4rem;
-    }
-
-    .dictionary-senses ol {
-      margin: 0;
-      padding-left: 1.3rem;
-    }
-
-    .dictionary-senses li {
-      font-size: 0.86rem;
-      line-height: 1.6;
-      margin-bottom: 0.45rem;
-    }
-
-    .dictionary-origin {
-      margin-left: 1.25rem;
-      margin-top: 0.7rem;
-      font-size: 0.78rem;
-      color: #4b5563;
-    }
-
-    .dictionary-origin span {
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 600;
-      font-size: 0.74rem;
-    }
-
-    .philosophy-note {
-      margin-top: 0.85rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .philosophy-note span {
-      color: var(--accent);
-    }
-
-    /* OFFERING / SESSIONS */
-
-    .session-label {
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.2rem;
-    }
-
-    .session-title {
-      font-size: 0.9rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 0.2rem;
-    }
-
-    .session-duration {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-    }
-
-    .committed-image {
-      border-radius: 1.2rem;
-      overflow: hidden;
-      border: 1px solid var(--border-soft);
-      background: #020617;
-      box-shadow: 0 22px 55px rgba(0, 0, 0, 0.85);
-    }
-
-    .committed-image img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-
-    .committed-caption {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 0.6rem;
-    }
-
-    /* ACTIVATION */
-
-    .activation-price {
-      font-size: 1.7rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-
-    .activation-price span {
-      font-size: 0.85rem;
-      font-weight: 400;
-      color: var(--muted);
-    }
-
-    .activation-note {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 0.6rem;
-    }
-
-    /* CONTACT & FOOTER */
-
-    #contact .card {
-      text-align: left;
-    }
-
-    .footer {
-      border-top: 1px solid rgba(15, 23, 42, 0.85);
-      padding: 1.3rem 0 1.7rem;
-      margin-top: auto;
-    }
-
-    .footer-inner {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 0 1.25rem;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .footer-inner span strong {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    @media (max-width: 640px) {
-      section {
-        padding-block: 2.7rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <!-- NAV -->
-    <header class="nav">
-      <div class="nav-inner">
-        <div class="nav-brand">
-          <div class="nav-mark">TFT</div>
-          <div class="nav-text">
-            <span>The Final Third™</span>
-            <span>Define Your Moment</span>
-          </div>
-        </div>
-        <div class="nav-cta">
-          <button class="btn-ghost" onclick="scrollToSection('offering')">
-            View The Method
-          </button>
-          <button class="btn-primary" onclick="scrollToSection('activation')">
-            Book The Method
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <!-- SECTION 1 — HOME -->
-    <section id="home">
-      <div class="shell hero-inner">
-        <div>
-          <div class="hero-top-buttons">
-            <button class="btn-ghost" onclick="scrollToSection('offering')">
-              The Method
-            </button>
-            <button class="btn-ghost" onclick="scrollToSection('activation')">
-              Investment
-            </button>
-          </div>
-
-          <div class="hero-kicker">Performance Preparation</div>
-          <h1 class="hero-title">Define Your Moment.</h1>
-          <p class="hero-subtitle">
-            A three-session performance method for serious players who want to
-            <span>show up when the moment matters.</span>
-          </p>
-
-          <p class="hero-outcome">
-            Within 72 hours of booking, your athlete will complete their Identity Session
-            and leave with a clear preparation baseline and immediate action plan.
-          </p>
-
-          <div class="hero-ctas">
-            <button class="btn-primary" onclick="scrollToSection('activation')">
-              Book The Final Third™ Method
-            </button>
-            <button class="btn-ghost" onclick="scrollToSection('offering')">
-              Learn How It Works
-            </button>
-          </div>
-
-          <p class="hero-footnote">
-            Built for parents who see the bigger picture and players who want
-            to stay calm when everything compresses.
-          </p>
-        </div>
-
-        <div class="hero-media">
-          <div class="hero-card">
-            <!-- Earned calm hero image -->
-            <img
-              src="hero-final-third.jpg"
-              alt="Striker wearing number 9 looking at the goal at sunset"
-            />
-            <div class="hero-card-overlay"></div>
-            <div class="hero-card-footer">
-              <span>Earned Calm</span>
-              <span class="hero-pill">The Final Third™ Method</span>
-            </div>
-          </div>
-          <div class="hero-badge">
-            <span class="badge-dot"></span>
-            3–Session Program
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 2 — THE PHILOSOPHY -->
-    <section id="philosophy">
-      <div class="shell section-grid">
-        <div>
-          <div class="section-kicker">Section 2</div>
-          <h2 class="section-title">The Philosophy</h2>
-          <p class="section-lead">
-            We treat the final third as more than a buzzword. It has a clear
-            definition, so players know exactly what they’re training for.
-          </p>
-        </div>
-
-        <div>
-          <div class="dictionary-card">
-            <div class="dictionary-header">
-              <div class="dictionary-headword">The Final Third</div>
-              <div class="dictionary-pronunciation">/ðə ˈfaɪ.nəl θɜːrd/</div>
-              <div class="dictionary-pos">noun</div>
-            </div>
-
-            <div class="dictionary-senses">
-              <ol>
-                <li>
-                  the decisive phase of play, where time compresses and
-                  execution determines outcome.
-                </li>
-                <li>
-                  a state in which preparation, identity, and composure
-                  converge under pressure.
-                </li>
-              </ol>
-            </div>
-
-            <div class="dictionary-origin">
-              <span>Origin</span> football (soccer); metaphor for where the game
-              is decided.
-            </div>
-          </div>
-
-          <p class="philosophy-note">
-            The Final Third™ Method prepares players to arrive
-            <span>calm, confident, and ready</span> when it matters most.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TRUST SECTION — WHY THIS EXISTS -->
-    <section id="why">
-      <div class="shell section-grid">
-        <div>
-          <div class="section-kicker">Why This Exists</div>
-          <h2 class="section-title">Built From a Real Journey</h2>
-          <p class="section-lead">
-            The Final Third™ grew out of a real pathway to the college game — real
-            matches, real pressure moments, and real conversations between parent and player.
-          </p>
-        </div>
-        <div>
-          <div class="card">
-            <p class="small" style="font-size:0.88rem; margin-bottom:0.8rem;">
-              This method wasn’t built in a classroom or a lab. It was built in the stands,
-              on long car rides home, and in the quiet spaces before big games, where
-              preparation and composure matter more than hype.
-            </p>
-            <ul class="bullets">
-              <li>Grounded in lived experience, not recycled sports clichés.</li>
-              <li>Designed specifically for serious players on or approaching the college pathway.</li>
-              <li>Focused on habits that hold when the moment compresses.</li>
-            </ul>
-
-            <p class="small" style="margin-top:0.9rem; font-style:italic;">
-              “This gave my son structure and clarity. He stopped guessing and started preparing.”
-              <br />— Parent of U17 striker
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3 — THE OFFERING -->
-    <section id="offering">
-      <div class="shell section-grid">
-        <div>
-          <div class="section-kicker">Section 3</div>
-          <h2 class="section-title">The Final Third™ Method</h2>
-          <p class="section-lead">
-            A structured, three-session performance preparation program designed
-            to establish the habits, routines, and awareness required to perform
-            calmly and consistently under pressure—while reducing unnecessary
-            physical breakdown.
-          </p>
-
-          <div class="card">
-            <div class="session-label">Session 1</div>
-            <div class="session-title">Identity</div>
-            <div class="session-duration">30 minutes · Baseline assessment</div>
-            <p class="small">
-              Establish a clear picture of how the athlete currently prepares,
-              recovers, and approaches competition.
-            </p>
-            <ul class="bullets">
-              <li>Awareness of current preparation and recovery habits</li>
-              <li>Identification of gaps, inconsistencies, and risk patterns</li>
-              <li>Clarity on potential blind spots under pressure</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <div class="session-label">Session 2</div>
-            <div class="session-title">Guidance</div>
-            <div class="session-duration">45 minutes · System installation</div>
-            <p class="small">
-              Install simple, repeatable routines that support both performance
-              and durability.
-            </p>
-            <ul class="bullets">
-              <li>Pre-training readiness routine</li>
-              <li>Post-training recovery routine</li>
-              <li>Mobility and durability routine</li>
-              <li>
-                A simple system they can execute on training days, match days,
-                and off-days
-              </li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <div class="session-label">Session 3</div>
-            <div class="session-title">Observation</div>
-            <div class="session-duration">60 minutes · Live refinement</div>
-            <p class="small">
-              Turn understanding into execution with real-time feedback in real
-              environments.
-            </p>
-            <ul class="bullets">
-              <li>Live feedback and practical corrections</li>
-              <li>Refined routines that hold up under fatigue and pressure</li>
-              <li>Confidence executing the system at home and on the pitch</li>
-            </ul>
-          </div>
-        </div>
-
-        <div>
-          <div class="committed-image card" style="padding:0;">
-            <!-- Cornell committed image -->
-            <img
-              src="andrew-miles-committed.jpg"
-              alt="Recruitment graphic of Andrew Miles committed to Cornell University"
-            />
-          </div>
-          <p class="committed-caption">
-            Proof of concept: The Final Third™ grew out of real conversations,
-            real matches, and a real journey to the college game.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4 — THE ACTIVATION -->
-    <section id="activation">
-      <div class="shell section-grid">
-        <div>
-          <div class="section-kicker">Section 4</div>
-          <h2 class="section-title">Activation & Investment</h2>
-          <p class="section-lead">
-            Simple, transparent, and respectful of your family’s time. The goal
-            is to protect the schedule, not overload it.
-          </p>
-        </div>
-
-        <div>
-          <div class="card">
-            <div class="activation-price">
-              $345 <span>USD · three-session program</span>
-            </div>
-            <ul class="bullets">
-              <li>Three structured sessions (Identity, Guidance, Observation)</li>
-              <li>Clear expectations and scheduling</li>
-              <li>Secure digital payment</li>
-            </ul>
-
-            <p class="activation-note">
-              Availability is intentionally limited. Booking confirms your place
-              in the schedule. Most families see meaningful shifts in how their
-              athlete prepares within the first week.
-            </p>
-
-            <div style="margin-top:1.4rem; display:flex; flex-direction:column; gap:0.65rem;">
-              <button class="btn-primary" style="width:100%;" onclick="scrollToSection('contact')">
-                Book The Final Third™ Method
-              </button>
-              <button class="btn-ghost" style="width:100%;" onclick="scrollToSection('offering')">
-                Review The Method Again
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 5 — CONTACT / QUESTIONS -->
-    <section id="contact">
-      <div class="shell">
-        <div class="card">
-          <div class="section-kicker">Section 5</div>
-          <h2 class="section-title">Contact & Questions</h2>
-          <p class="section-lead">
-            If you have questions before booking, or want to confirm fit for
-            your player, reach out directly.
-          </p>
-          <p style="margin-top:1rem; font-size:0.9rem;">
-            Email:<br />
-            <a href="mailto:info@thefinalthird.com" style="text-decoration:underline;">
-              info@thefinalthird.com
-            </a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div class="footer-inner">
-        <span>
-          <strong>The Final Third™</strong> · Define Your Moment
-        </span>
-        <span>© <span id="year"></span> The Final Third. All rights reserved.</span>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    function scrollToSection(id) {
-      var el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+    .dict-body{
+      padding: 12px 14px 14px 14px;
+      color:#555;
+      font-size: 14px;
+      text-transform:none;
+      letter-spacing:0;
+      line-height:1.6;
